@@ -1,0 +1,28 @@
+MPW-AD: Multi-Photometric Weld Anomaly Detection Benchmark
+Copyright (c) 2026 The MPF-AD Authors
+
+This dataset is released under the Creative Commons Attribution 4.0
+International License (CC-BY-4.0).
+
+You are free to:
+  Share — copy and redistribute the material in any medium or format
+  Adapt — remix, transform, and build upon the material for any purpose,
+          even commercially.
+
+Under the following terms:
+  Attribution — You must give appropriate credit, provide a link to the
+  license, and indicate if changes were made. You may do so in any
+  reasonable manner, but not in any way that suggests the licensor
+  endorses you or your use.
+
+No additional restrictions — You may not apply legal terms or
+technological measures that legally restrict others from doing anything
+the license permits.
+
+Notices:
+  - The upstream rendering pipeline at `Depth-Normal_Rendering/` carries
+    its own LICENSE (see that directory).
+  - The 549 raw `.tif` depth scans were collected by the LUT-AD project
+    (Pan et al.); MPW-AD redistributes them with photometric renderings
+    and pixel-level anomaly annotations added by the MPF-AD authors.
+  - Full license text: https://creativecommons.org/licenses/by/4.0/legalcode

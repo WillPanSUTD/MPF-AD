@@ -1,0 +1,145 @@
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+.Python
+build/
+dist/
+.venv/
+venv/
+.env
+.python-version
+
+# ===== Jupyter =====
+.ipynb_checkpoints/
+
+# ===== PyTorch / ultralytics artifacts =====
+*.pt
+*.onnx
+*.engine
+*.tflite
+yolo*.pt
+runs/
+mlruns/
+events.out.tfevents.*
+*.cache
+labels.cache
+
+# ===== Training outputs =====
+logs/
+Abl_Exp/train/*/weights/
+Abl_Exp/val/*/
+Com_Exp/
+wandb/
+
+# Keep training run YAML and metrics so paper-relevant artifacts can be
+# committed; ignore only the heavy weights and per-batch images.
+Abl_Exp/train/*/labels.jpg
+Abl_Exp/train/*/train_batch*.jpg
+Abl_Exp/train/*/val_batch*.jpg
+Abl_Exp/train/*/results/
+
+# ===== Visual Studio / MSBuild =====
+.vs/
+*.obj
+*.exe
+*.dll
+*.pdb
+*.idb
+*.ilk
+*.exp
+*.lib
+*.aps
+*.suo
+*.user
+*.opendb
+x64/
+Win32/
+Debug/
+Release/
+
+# ===== CMake =====
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+Makefile
+
+# ===== LaTeX =====
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.log
+paper/*.out
+paper/*.synctex.gz
+paper/*.toc
+paper/*.lof
+paper/*.lot
+paper/*.run.xml
+paper/*-blx.bib
+paper/*.pdf
+
+# ===== OS / editor =====
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# ===== Repo-specific =====
+# Keep V0/V1 versioned snapshots committed.
+# Local TIFs and pre-rendered PNGs are large; users should pull them from
+# the Hugging Face dataset rather than from git. Comment these two lines
+# out if you want to commit the raw data alongside the code.
+Crop_Data/Tif/*.tif
+Train_Data/*/train/images/*.png
+Train_Data/*/val/images/*.png
+Train_Data/*/test/images/*.png
+
+# 3D dataset extension generated artifacts
+.cache/
+Dataset_3D/
+
+# ===== MPF-AD repo: exclude paper, external code, results, etc. =====
+# This repo is the MPF-AD code release only; the paper LaTeX, the
+# forked PointAD repository, raw experiment outputs, and the junctioned
+# dataset variants stay local.
+
+# Paper drafts (LaTeX + figures)
+paper_pointad_plus/
+paper/
+**/main_pre_eaai.tex
+
+# Forked external code + downloaded datasets
+external/
+
+# Experiment outputs (raw_results.pkl, per-pixel maps, logs)
+results/
+
+# Research planning notes (LIT_SURVEY, NARRATIVE_REPORT, COMPETITOR_ANALYSIS)
+idea-stage/
+
+# Project memory (private workflow state)
+memory/
+
+# Junctioned dataset variants under MPW-AD — these point at
+# Dataset_3D/ which is excluded above; keep only the READMEs.
+MPW-AD/variants/*/data/
+
+# Old / parallel YOLO-WT project directory (separate codebase, not part of MPF-AD)
+YOLO-WT/
+
+# Dataset_3D-related working caches that the original gitignore missed
+**/*.npz
+**/*.pkl
+**/raw_results.*
+**/all_meta.json
+**/all_meta_remapped.json
+

@@ -1,0 +1,66 @@
+{
+  "name": "MPW-AD",
+  "long_name": "Multi-Photometric Weld Anomaly Detection",
+  "version": "1.0.0",
+  "license": "CC-BY-4.0",
+  "released_with": "MPF-AD, Engineering Applications of Artificial Intelligence, 2026 (under review)",
+  "source_scans": {
+    "total_raw_tif_scans": 549,
+    "anomalous": 541,
+    "native_normal": 8
+  },
+  "image_size_native": {
+    "rows": [512, 526, 551, 640],
+    "cols": 640,
+    "note": "Long axis lies along the welding direction; height varies across acquisitions."
+  },
+  "pixel_size_mm": {
+    "xy": 0.016,
+    "z": "mm-scale"
+  },
+  "photometric_modalities": [
+    "lut",
+    "phong",
+    "diffuse",
+    "specular",
+    "normal"
+  ],
+  "splits": {
+    "train_good": 714,
+    "val_good": 153,
+    "test_good": 153,
+    "test_anomalous": 541
+  },
+  "matched_image_protocol_total": 694,
+  "pixel_protocol_total": 847,
+  "per_class": {
+    "pseudo_soldering": {"instances": 212, "single_class_test_n": 206},
+    "pinhole":         {"instances": 217, "single_class_test_n": 11},
+    "pit":             {"instances": 228, "single_class_test_n": 10},
+    "burst":           {"instances": 100, "single_class_test_n": 3},
+    "fish_scale_welding": {"instances": 174, "single_class_test_n": 21},
+    "bump":            {"instances": 97,  "single_class_test_n": 19},
+    "combined":        {"instances": 271, "single_class_test_n": 271}
+  },
+  "ground_truth_sources": {
+    "primary":  "SAM2 masks prompted by manual bounding boxes",
+    "fallback": "Depth-threshold geometric masks (provided for sensitivity analysis)"
+  },
+  "variants": {
+    "mvtec3d_style": {
+      "path": "variants/mvtec3d_style/data/weld/",
+      "compatible_with": ["PointAD", "M3DM", "CFM", "EasyNet", "Shape-Guided", "BTF"],
+      "format": "organised XYZ (.tiff) + RGB (.png) + GT (.png)"
+    },
+    "eyecandies_style": {
+      "path": "variants/eyecandies_style/data/weld/",
+      "compatible_with": ["AFRD", "MPF-AD multi-photometric pipelines"],
+      "format": "5 photometric channels + depth + GT (native resolution)"
+    },
+    "real3d_style": {
+      "path": "variants/real3d_style/data/weld/",
+      "compatible_with": ["Reg3D-AD", "Group3AD", "PO3AD", "R3D-AD", "3DKeyAD"],
+      "format": "point cloud (.pcd) + per-point binary labels (.txt)"
+    }
+  }
+}
