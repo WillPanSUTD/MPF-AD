@@ -1,0 +1,26 @@
+LUT-AD repository — license notice
+==================================
+
+This repository contains code released under multiple licenses. Each
+component carries its own LICENSE file; the table below summarises which
+license applies where, and files inherit from the closest LICENSE on the
+path from the file to the repository root.
+
+  Path                          | License        | Full text
+  ------------------------------|----------------|-----------------------------
+  Depth-Normal_Rendering/       | Apache-2.0     | Depth-Normal_Rendering/LICENSE
+  YOLO-WT/                      | AGPL-3.0       | YOLO-WT/LICENSE
+  paper/                        | CC BY-NC 4.0   | (see manuscript copyright)
+  Crop_Data/, Train_Data/       | CC BY-NC 4.0   | docs/dataset_card.md
+
+Components in `YOLO-WT/` build on top of Ultralytics
+(https://github.com/ultralytics/ultralytics), which is itself AGPL-3.0,
+and the licence is therefore inherited by all derivative scripts in
+this directory (train.py, val.py, detect.py, patch_ckpt_names.py, the
+custom modules under ultralytics/nn/AddModules/, and the YAMLs under
+ultralytics/cfg/).
+
+The C++ renderer in `Depth-Normal_Rendering/` is independent of
+Ultralytics and is released under Apache-2.0 by the authors.
+
+For citation, see README.md.
