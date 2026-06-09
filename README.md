@@ -1,6 +1,6 @@
 # MPF-AD + LUT-AD
 
-This private repository hosts code for two related projects on weld
+This repository hosts code for two related projects on weld
 defect detection:
 
 1. **MPF-AD** *(this repo's main contribution)* — *Parameter-Free
@@ -117,14 +117,31 @@ The dataset is also released on Hugging Face — see [`docs/dataset_card.md`](do
 ### 1. Clone and fetch the dataset
 
 ```bash
-git clone https://github.com/<your-handle>/<repo>.git
-cd <repo>
+git clone https://github.com/WillPanSUTD/MPF-AD.git
+cd MPF-AD
 
 # Option A: download the dataset from Hugging Face
-huggingface-cli download <hf-handle>/<dataset> --repo-type dataset --local-dir .
+huggingface-cli download vpan1226/MPW-AD --repo-type dataset --local-dir .
 
 # Option B: re-render Train_Data from Crop_Data yourself (see Stage 1 below)
 ```
+
+### 1b. Download pre-trained weights
+
+```bash
+# Canonical public checkpoint (seed 42, val mAP@50 = 0.929)
+huggingface-cli download vpan1226/MPF-AD \
+    checkpoints/YOLO-WT-seed42-best.pt \
+    --local-dir YOLO-WT/Abl_Exp/train/YOLO-WT-250-16-640-SGD-seed42/weights \
+    --local-dir-use-symlinks False
+
+# All four seed runs (for reproducibility / variance analysis)
+huggingface-cli download vpan1226/MPF-AD \
+    --include "checkpoints/*.pt" \
+    --local-dir checkpoints/ --local-dir-use-symlinks False
+```
+
+All checkpoints: <https://huggingface.co/vpan1226/MPF-AD/tree/main/checkpoints>
 
 ### 2. Stage 1 — render depth maps to photometric images (C++)
 
@@ -253,10 +270,10 @@ validator:
 
 Mean of 4 seeds val mAP@50 = 0.902, range = 4.8 pt. **Seed 42 is the closest
 single-seed reproduction of the paper number and is shipped as the public
-release checkpoint** under
-`Abl_Exp/train/YOLO-WT-250-16-640-SGD-seed42/weights/best.pt`. `val.py`
-defaults to this path; the other three seed runs are kept for reference and
-to make the variance verifiable.
+release checkpoint** on Hugging Face at
+[`vpan1226/MPF-AD`](https://huggingface.co/vpan1226/MPF-AD) under
+`checkpoints/YOLO-WT-seed42-best.pt`. The other three seed runs are kept
+for reference and to make the variance verifiable.
 
 ### Robustness check via 4-seed Weighted Box Fusion
 
