@@ -3,7 +3,7 @@
   "long_name": "Multi-Photometric Weld Anomaly Detection",
   "version": "1.0.0",
   "license": "CC-BY-4.0",
-  "released_with": "MPF-AD, Engineering Applications of Artificial Intelligence, 2026 (under review)",
+  "released_with": "MPF-AD, 2026 (manuscript in preparation)",
   "source_scans": {
     "total_raw_tif_scans": 549,
     "anomalous": 541,

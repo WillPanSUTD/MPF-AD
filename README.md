@@ -5,8 +5,7 @@ defect detection:
 
 1. **MPF-AD** *(this repo's main contribution)* — *Parameter-Free
    Multi-Photometric Fusion for Zero-Shot 3D Weld Anomaly Detection*.
-   Under review at *Engineering Applications of Artificial Intelligence*
-   (EAAI), 2026.
+   Manuscript in preparation.
 2. **LUT-AD** *(parent project, code-only)* — *Physically Inspired
    Geometry-to-Photometry Rendering for Real-Time Weld Defect Detection*.
    **Accepted** at EAAI, 2026.

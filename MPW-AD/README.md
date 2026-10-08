@@ -1,7 +1,7 @@
 # MPW-AD: Multi-Photometric Weld Anomaly Detection Benchmark
 
 **Version:** 1.0
-**Released with:** MPF-AD (Multi-Photometric Fusion for Anomaly Detection), submitted to Engineering Applications of Artificial Intelligence, 2026.
+**Released with:** MPF-AD (Multi-Photometric Fusion for Anomaly Detection), manuscript in preparation, 2026.
 **License:** CC-BY-4.0
 **Contact:** <https://github.com/WillPanSUTD/MPF-AD/issues>
 
@@ -75,12 +75,11 @@ To regenerate the photometric renderings from raw `.tif` scans, see
 If you use MPW-AD, please cite (BibTeX in `citation.bib`):
 
 ```bibtex
-@article{anonymous2026mpfad,
+@misc{anonymous2026mpfad,
   title={MPF-AD: Parameter-Free Multi-Photometric Fusion for Zero-Shot 3D Weld Anomaly Detection},
   author={Anonymous},
-  journal={Engineering Applications of Artificial Intelligence},
   year={2026},
-  note={Under review}
+  note={Manuscript in preparation}
 }
 ```
 
