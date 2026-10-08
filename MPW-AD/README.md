@@ -3,7 +3,7 @@
 **Version:** 1.0
 **Released with:** MPF-AD (Multi-Photometric Fusion for Anomaly Detection), submitted to Engineering Applications of Artificial Intelligence, 2026.
 **License:** CC-BY-4.0
-**Contact:** [author email]
+**Contact:** <https://github.com/WillPanSUTD/MPF-AD/issues>
 
 ## Overview
 
@@ -68,7 +68,7 @@ See `statistics.json` for per-class counts, image sizes, and split sizes.
 
 To regenerate the photometric renderings from raw `.tif` scans, see
 `scripts/` and the upstream rendering pipeline at
-`F:/dataset/LUT_AD_DataSet/Depth-Normal_Rendering/` (C++).
+[`Depth-Normal_Rendering/`](https://github.com/WillPanSUTD/MPF-AD/tree/main/Depth-Normal_Rendering) (C++).
 
 ## Citation
 
@@ -84,6 +84,19 @@ If you use MPW-AD, please cite (BibTeX in `citation.bib`):
 }
 ```
 
+If you use the 2D detection data (`Crop_Data/`, `Train_Data/`) or the
+rendering pipeline, please also cite LUT-AD:
+
+```bibtex
+@article{cao2026geo2pho,
+  title   = {Physically Inspired Geometry-to-Photometry Rendering for Real-Time Weld Defect Detection},
+  author  = {Cao, Ling and Qiu, Jiajun and Zhang, Yunzhi and Feng, Daquan and Pan, Wei},
+  journal = {Engineering Applications of Artificial Intelligence},
+  year    = {2026},
+  note    = {Accepted, in press. Preprint: SSRN, doi:10.2139/ssrn.6946138}
+}
+```
+
 ## License
 
 CC-BY-4.0 (data, masks, and renderings). The upstream rendering tool
@@ -91,6 +104,6 @@ is licensed separately under the Depth-Normal_Rendering/LICENSE.
 
 ## Acknowledgements
 
-MPW-AD reuses the source `.tif` depth scans from LUT-AD (Pan et al.),
+MPW-AD reuses the source `.tif` depth scans from LUT-AD (Cao et al., EAAI 2026),
 extended with deterministic photometric renderings and 3D-AD-format
 adapters by the MPF-AD authors.
