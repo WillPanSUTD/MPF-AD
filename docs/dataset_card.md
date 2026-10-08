@@ -138,21 +138,14 @@ reflects the natural distribution observed on the production line.
 
 ## Usage
 
-### Loading with the Hugging Face datasets library
-
-```python
-from datasets import load_dataset
-
-ds = load_dataset("<hf-handle>/lut-ad-weld-defect", split="train")
-sample = ds[0]
-# sample = {"image": <PIL.Image>, "label_path": <path-to-yolo-txt>, ...}
-```
-
 ### Direct download
 
+The 2D detection data lives under `Crop_Data/` and `Train_Data/` of the
+[`vpan1226/MPW-AD`](https://huggingface.co/datasets/vpan1226/MPW-AD) dataset repo:
+
 ```bash
-huggingface-cli download <hf-handle>/lut-ad-weld-defect \
-    --repo-type dataset --local-dir ./LUT_AD_DataSet
+hf download vpan1226/MPW-AD --repo-type dataset \
+    --include "Crop_Data/*" "Train_Data/*" --local-dir ./LUT_AD_DataSet
 ```
 
 ### Re-rendering Train_Data from Crop_Data

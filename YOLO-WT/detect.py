@@ -2,8 +2,8 @@ from ultralytics import YOLO
 if __name__ == '__main__':
 
     # Load a model
-    model = YOLO(model=r'Abl_Exp/train/YOLO-WT-250-16-640-SGD-seed42/weights/best.pt')
-    model.predict(source=r'assets/test.bmp',
+    model = YOLO(model='../checkpoints/YOLO-WT-seed42-best.pt')
+    model.predict(source='ultralytics/assets/test.bmp',
                   device='0',
                   imgsz=640,
                   save=False,

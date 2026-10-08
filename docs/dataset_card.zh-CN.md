@@ -129,21 +129,14 @@ Train_Data/<Modality>/
 
 ## 使用方法
 
-### 通过 Hugging Face datasets 加载
-
-```python
-from datasets import load_dataset
-
-ds = load_dataset("<hf-handle>/lut-ad-weld-defect", split="train")
-sample = ds[0]
-# sample = {"image": <PIL.Image>, "label_path": <path-to-yolo-txt>, ...}
-```
-
 ### 直接下载
 
+2D 检测数据位于数据集仓库
+[`vpan1226/MPW-AD`](https://huggingface.co/datasets/vpan1226/MPW-AD) 的 `Crop_Data/` 与 `Train_Data/` 下：
+
 ```bash
-huggingface-cli download <hf-handle>/lut-ad-weld-defect \
-    --repo-type dataset --local-dir ./LUT_AD_DataSet
+hf download vpan1226/MPW-AD --repo-type dataset \
+    --include "Crop_Data/*" "Train_Data/*" --local-dir ./LUT_AD_DataSet
 ```
 
 ### 从 Crop_Data 重新渲染 Train_Data

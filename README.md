@@ -122,25 +122,34 @@ git clone https://github.com/WillPanSUTD/MPF-AD.git
 cd MPF-AD
 
 # Option A: download the dataset from Hugging Face
-huggingface-cli download vpan1226/MPW-AD --repo-type dataset --local-dir .
+hf download vpan1226/MPW-AD --repo-type dataset --local-dir .
 
 # Option B: re-render Train_Data from Crop_Data yourself (see Stage 1 below)
 ```
 
 ### 1b. Download pre-trained weights
 
-```bash
-# Canonical public checkpoint (seed 42, val mAP@50 = 0.929)
-huggingface-cli download vpan1226/MPF-AD \
-    checkpoints/YOLO-WT-seed42-best.pt \
-    --local-dir YOLO-WT/Abl_Exp/train/YOLO-WT-250-16-640-SGD-seed42/weights \
-    --local-dir-use-symlinks False
+Run from the repository root; files land in `./checkpoints/`, which is
+where `YOLO-WT/val.py` and `YOLO-WT/detect.py` look for them.
 
-# All four seed runs (for reproducibility / variance analysis)
-huggingface-cli download vpan1226/MPF-AD \
-    --include "checkpoints/*.pt" \
-    --local-dir checkpoints/ --local-dir-use-symlinks False
+```bash
+# Public release checkpoint (seed 42, val mAP@50 = 0.929)
+hf download vpan1226/MPF-AD checkpoints/YOLO-WT-seed42-best.pt --local-dir .
+
+# Original paper run (val mAP@50 = 0.938, the number reported in the paper)
+hf download vpan1226/MPF-AD checkpoints/YOLO-WT-paper-best.pt --local-dir .
+
+# Everything: paper run, 4 seed runs, and the WDSConv-only / IWUpSample-only ablations
+hf download vpan1226/MPF-AD --include "checkpoints/*" --local-dir .
 ```
+
+| File | Run | val mAP@50 |
+|------|-----|------------|
+| `checkpoints/YOLO-WT-paper-best.pt` | Original paper run (seed 0) | 0.938 |
+| `checkpoints/YOLO-WT-seed42-best.pt` | Re-run, seed 42 (public default) | 0.929 |
+| `checkpoints/YOLO-WT-seed{0,1,2}-best.pt` | Re-runs, seeds 0 / 1 / 2 | 0.881 / 0.893 / 0.905 |
+| `checkpoints/ablation/WDSConv-only-best.pt` | Ablation: WDSConv only | 0.921 |
+| `checkpoints/ablation/IWUpSample-only-best.pt` | Ablation: IWUpSample only | 0.932 |
 
 All checkpoints: <https://huggingface.co/vpan1226/MPF-AD/tree/main/checkpoints>
 
@@ -223,7 +232,7 @@ batch 16, image size 640, SGD, no pretrained weights.
 **Validate**
 
 ```bash
-python val.py    # loads Abl_Exp/train/.../weights/best.pt
+python val.py    # loads ../checkpoints/YOLO-WT-seed42-best.pt
 ```
 
 **Predict on a single image**
@@ -274,7 +283,8 @@ single-seed reproduction of the paper number and is shipped as the public
 release checkpoint** on Hugging Face at
 [`vpan1226/MPF-AD`](https://huggingface.co/vpan1226/MPF-AD) under
 `checkpoints/YOLO-WT-seed42-best.pt`. The other three seed runs are kept
-for reference and to make the variance verifiable.
+for reference and to make the variance verifiable. The original paper run
+itself is also released as `checkpoints/YOLO-WT-paper-best.pt`.
 
 ### Robustness check via 4-seed Weighted Box Fusion
 

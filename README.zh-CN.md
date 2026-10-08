@@ -76,10 +76,36 @@ git clone https://github.com/WillPanSUTD/MPF-AD.git
 cd MPF-AD
 
 # 方式 A：从 Hugging Face 下载已渲染好的 Train_Data
-huggingface-cli download <hf-handle>/<dataset> --repo-type dataset --local-dir .
+hf download vpan1226/MPW-AD --repo-type dataset --local-dir .
 
 # 方式 B：使用 Crop_Data 自行运行 Stage 1 渲染（见下文）
 ```
+
+### 1b. 下载预训练权重
+
+在仓库根目录运行；文件会落到 `./checkpoints/`，`YOLO-WT/val.py` 与 `YOLO-WT/detect.py`
+默认就从这里读取。
+
+```bash
+# 公开发布权重（seed 42，val mAP@50 = 0.929）
+hf download vpan1226/MPF-AD checkpoints/YOLO-WT-seed42-best.pt --local-dir .
+
+# 论文原始训练（val mAP@50 = 0.938，即论文报告值）
+hf download vpan1226/MPF-AD checkpoints/YOLO-WT-paper-best.pt --local-dir .
+
+# 全部：论文原始训练、4 个 seed、WDSConv-only / IWUpSample-only 消融
+hf download vpan1226/MPF-AD --include "checkpoints/*" --local-dir .
+```
+
+| 文件 | 训练 | val mAP@50 |
+|------|------|------------|
+| `checkpoints/YOLO-WT-paper-best.pt` | 论文原始训练（seed 0） | 0.938 |
+| `checkpoints/YOLO-WT-seed42-best.pt` | 复训，seed 42（默认公开权重） | 0.929 |
+| `checkpoints/YOLO-WT-seed{0,1,2}-best.pt` | 复训，seed 0 / 1 / 2 | 0.881 / 0.893 / 0.905 |
+| `checkpoints/ablation/WDSConv-only-best.pt` | 消融：仅 WDSConv | 0.921 |
+| `checkpoints/ablation/IWUpSample-only-best.pt` | 消融：仅 IWUpSample | 0.932 |
+
+全部权重：<https://huggingface.co/vpan1226/MPF-AD/tree/main/checkpoints>
 
 ### 2. Stage 1 — 深度图渲染为光度图（C++）
 
@@ -158,7 +184,7 @@ SGD，不加载预训练权重。
 **验证**
 
 ```bash
-python val.py    # 默认从 Abl_Exp/train/.../weights/best.pt 读权重
+python val.py    # 默认从 ../checkpoints/YOLO-WT-seed42-best.pt 读权重
 ```
 
 **单张推理**
@@ -203,9 +229,10 @@ python detect.py    # 修改 source= 为你的输入图
 
 4 个 seed 的 val mAP@50 均值 0.902，跨度 4.8 pt。**seed 42 是单种子下最接近
 论文报告值的一次，作为公开发布权重**：
-`Abl_Exp/train/YOLO-WT-250-16-640-SGD-seed42/weights/best.pt`；
-`val.py` 默认就指向这个路径。其余 3 个 seed 的运行目录保留下来，
-方便他人独立验证种子方差。
+Hugging Face 上的 `checkpoints/YOLO-WT-seed42-best.pt`；
+`val.py` 默认就指向这个权重。其余 3 个 seed 的权重也一并发布，
+方便他人独立验证种子方差；论文原始训练的权重另以
+`checkpoints/YOLO-WT-paper-best.pt` 发布。
 
 ### 4-seed WBF ensemble 稳健性检查
 
