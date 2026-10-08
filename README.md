@@ -102,9 +102,10 @@ See [`docs/algorithm.md`](docs/algorithm.md) for the full mathematical descripti
 │   └── ultralytics/            # Forked Ultralytics tree
 │       ├── nn/AddModules/      #   WDSConv.py, IWUpSample.py
 │       ├── cfg/models/YOLO-WT/ #   YOLO-WT.yaml + WDSConv/IWUpSample ablations
-│       └── cfg/datasets/       #   One YAML per modality (Phong / LUT / Normal / ...)
+│       ├── cfg/datasets/       #   One YAML per modality (Phong / LUT / Normal / ...)
+│       ├── Abl_Exp/train/      #   args.yaml + results.csv of the paper's ablation runs
+│       └── ANS/ DataPrepare/ Data_Vis/  # Analysis, data-prep and plotting scripts
 │
-├── paper/                      # LaTeX source for the manuscript (Elsevier cas-sc)
 └── docs/                       # Algorithm details and dataset card
 ```
 
@@ -278,7 +279,7 @@ for reference and to make the variance verifiable.
 ### Robustness check via 4-seed Weighted Box Fusion
 
 As a sanity check, we ran a 4-seed Weighted Box Fusion ensemble
-(`ensemble_eval.py`, dependencies: `pip install ensemble-boxes torchmetrics
+(`ensemble_eval.py`, *not yet included in this release*; dependencies: `pip install ensemble-boxes torchmetrics
 faster-coco-eval`). All metrics here are computed via
 `torchmetrics.MeanAveragePrecision(backend='faster_coco_eval')`, so they are
 **only directly comparable within this section** (they differ slightly from
@@ -291,8 +292,8 @@ ultralytics' implementation in the table above):
 
 The ensemble lifts every class except *Bump* (which gets pulled down by the
 weaker seeds' low-confidence boxes); we still ship the single seed-42
-checkpoint for ease of deployment, but the ensemble result is reproducible
-with `python ensemble_eval.py` and confirms the single-seed numbers are
+checkpoint for ease of deployment. The ensemble result (script to be added
+in a follow-up release) confirms the single-seed numbers are
 stable rather than degenerate.
 
 ### Known limitations of the released checkpoint

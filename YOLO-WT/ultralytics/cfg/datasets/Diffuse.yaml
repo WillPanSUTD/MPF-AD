@@ -1,0 +1,18 @@
+# Ultralytics 🚀 AGPL-3.0 License - https://ultralytics.com/license
+
+# Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
+path: /path/to/Train_Data/Diffuse # dataset root dir
+train: /path/to/Train_Data/Diffuse/train/
+val: /path/to/Train_Data/Diffuse/val/
+test: /path/to/Train_Data/Diffuse/test/ # test images (optional) https://eval.ai/web/challenges/challenge-page/800/overview
+
+# Classes
+names:
+  0: Inveracious solding
+  1: Pinhole
+  2: Pit
+  3: Burst
+  4: Fish-scale welding
+  5: Bump
+
+

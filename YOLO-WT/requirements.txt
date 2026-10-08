@@ -1,0 +1,5 @@
+# Upstream wheel only pulls in the dependency tree; the bundled fork in
+# ./ultralytics takes precedence at runtime (always `cd YOLO-WT` first).
+ultralytics==8.3.228
+PyWavelets
+polars

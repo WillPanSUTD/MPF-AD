@@ -56,9 +56,10 @@ Intelligence*，EAAI，2026 接收）。
 │   └── ultralytics/            # 修改过的 Ultralytics 源码
 │       ├── nn/AddModules/      #   WDSConv.py、IWUpSample.py
 │       ├── cfg/models/YOLO-WT/ #   YOLO-WT.yaml + WDSConv/IWUpSample 消融配置
-│       └── cfg/datasets/       #   各模态对应一份 YAML（Phong/LUT/Normal/...）
+│       ├── cfg/datasets/       #   各模态对应一份 YAML（Phong/LUT/Normal/...）
+│       ├── Abl_Exp/train/      #   论文消融实验的 args.yaml + results.csv
+│       └── ANS/ DataPrepare/ Data_Vis/  # 分析、数据准备与画图脚本
 │
-├── paper/                      # LaTeX 源（Elsevier cas-sc 模板）
 └── docs/                       # 算法详解 + 数据集说明
 ```
 
@@ -209,7 +210,7 @@ python detect.py    # 修改 source= 为你的输入图
 ### 4-seed WBF ensemble 稳健性检查
 
 作为额外的可信度证据，我们做了 4-seed Weighted Box Fusion 集成
-（`ensemble_eval.py`，需要 `pip install ensemble-boxes torchmetrics
+（`ensemble_eval.py`，*本次发布暂未包含*；需要 `pip install ensemble-boxes torchmetrics
 faster-coco-eval`）。这一节的指标走 `torchmetrics + faster_coco_eval`
 后端，**仅可在本节内部对比**（与上表 ultralytics 的实现略有差异）：
 
@@ -220,8 +221,7 @@ faster-coco-eval`）。这一节的指标走 `torchmetrics + faster_coco_eval`
 
 WBF 在大多数类上有正向收益，唯独 *Bump* 类在 test 上反被拉低
 （弱 seed 的低置信预测把 seed 42 的高置信框平均下去了）。
-我们仍然只发布 seed 42 的单 ckpt 以便部署；但 `python ensemble_eval.py`
-可重现这组 ensemble 数字，证明单种子结果是稳健的、非畸形的。
+我们仍然只发布 seed 42 的单 ckpt 以便部署；ensemble 脚本将在后续版本补上，这组数字证明单种子结果是稳健的、非畸形的。
 
 ### 已知限制
 

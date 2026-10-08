@@ -133,8 +133,6 @@ memory/
 # Dataset_3D/ which is excluded above; keep only the READMEs.
 MPW-AD/variants/*/data/
 
-# Old / parallel YOLO-WT project directory (separate codebase, not part of MPF-AD)
-YOLO-WT/
 
 # Dataset_3D-related working caches that the original gitignore missed
 **/*.npz
