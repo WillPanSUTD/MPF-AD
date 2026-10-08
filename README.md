@@ -9,7 +9,7 @@ defect detection:
    (EAAI), 2026.
 2. **LUT-AD** *(parent project, code-only)* — *Physically Inspired
    Geometry-to-Photometry Rendering for Real-Time Weld Defect Detection*.
-   Also under review at EAAI, 2026.
+   **Accepted** at EAAI, 2026.
 
 The two share the same source weld scans and rendering pipeline; the
 README below describes the LUT-AD detector code. **For the MPF-AD
@@ -41,8 +41,8 @@ from this repo (large data, fork of upstream code, regenerable artefacts).
 
 Code and dataset for the LUT-AD paper *"Physically Inspired
 Geometry-to-Photometry Rendering for Real-Time Weld Defect Detection"*
-(under review at *Engineering Applications of Artificial Intelligence*,
-EAAI).
+(accepted at *Engineering Applications of Artificial Intelligence*,
+EAAI, 2026).
 
 [ [中文版](README.zh-CN.md) | [Algorithm details](docs/algorithm.md) | [Dataset card](docs/dataset_card.md) | [3D-AD variants](docs/dataset_3d.md) ]
 
@@ -321,16 +321,16 @@ stable rather than degenerate.
 ## Citation
 
 ```bibtex
-@article{pan2026geo2pho,
+@article{cao2026geo2pho,
   title   = {Physically Inspired Geometry-to-Photometry Rendering for Real-Time Weld Defect Detection},
-  author  = {Pan, Will and others},
+  author  = {Cao, Ling and Qiu, Jiajun and Zhang, Yunzhi and Feng, Daquan and Pan, Wei},
   journal = {Engineering Applications of Artificial Intelligence},
   year    = {2026},
-  note    = {Under review}
+  note    = {Accepted, in press. Preprint: SSRN, doi:10.2139/ssrn.6946138}
 }
 ```
 
-(Update once the article is published.)
+(Volume / article number / DOI will be added once the article is published online.)
 
 ---
 

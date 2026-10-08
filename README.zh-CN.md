@@ -1,8 +1,8 @@
 # 几何到光度的渲染：面向实时焊接缺陷检测
 
 论文 *"Physically Inspired Geometry-to-Photometry Rendering for Real-Time Weld
-Defect Detection"* 的代码与数据集（投稿至 *Engineering Applications of Artificial
-Intelligence*，EAAI，审稿中）。
+Defect Detection"* 的代码与数据集（已被 *Engineering Applications of Artificial
+Intelligence*，EAAI，2026 接收）。
 
 [ [English](README.md) | [算法说明](docs/algorithm.zh-CN.md) | [数据集说明](docs/dataset_card.zh-CN.md) | [3D-AD 变体](docs/dataset_3d.zh-CN.md) ]
 
@@ -71,8 +71,8 @@ Intelligence*，EAAI，审稿中）。
 ### 1. 克隆并获取数据集
 
 ```bash
-git clone https://github.com/<your-handle>/<repo>.git
-cd <repo>
+git clone https://github.com/WillPanSUTD/MPF-AD.git
+cd MPF-AD
 
 # 方式 A：从 Hugging Face 下载已渲染好的 Train_Data
 huggingface-cli download <hf-handle>/<dataset> --repo-type dataset --local-dir .
@@ -245,16 +245,16 @@ WBF 在大多数类上有正向收益，唯独 *Bump* 类在 test 上反被拉�
 ## 引用
 
 ```bibtex
-@article{pan2026geo2pho,
+@article{cao2026geo2pho,
   title   = {Physically Inspired Geometry-to-Photometry Rendering for Real-Time Weld Defect Detection},
-  author  = {Pan, Will and others},
+  author  = {Cao, Ling and Qiu, Jiajun and Zhang, Yunzhi and Feng, Daquan and Pan, Wei},
   journal = {Engineering Applications of Artificial Intelligence},
   year    = {2026},
-  note    = {Under review}
+  note    = {Accepted, in press. Preprint: SSRN, doi:10.2139/ssrn.6946138}
 }
 ```
 
-（论文正式发表后请同步更新此条目。）
+（正式在线发表后将补充卷号 / 文章编号 / DOI。）
 
 ---
 

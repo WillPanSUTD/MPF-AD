@@ -22,9 +22,9 @@ pretty_name: 锂电池顶盖焊接缺陷深度数据集（LUT-AD）
 来自真实工业产线的锂电池顶盖激光焊接数据集，采用**结构光高分辨率深度图**采集，
 并对**六类缺陷**做了边界框标注。本数据集对应论文
 *"Physically Inspired Geometry-to-Photometry Rendering for Real-Time Weld
-Defect Detection"*（投稿至 *Engineering Applications of Artificial
-Intelligence*，EAAI，审稿中）。代码与文档：
-<https://github.com/&lt;your-handle&gt;/&lt;repo&gt;>。
+Defect Detection"*（已被 *Engineering Applications of Artificial
+Intelligence*，EAAI，2026 接收）。代码与文档：
+<https://github.com/WillPanSUTD/MPF-AD>。
 
 [ [English](dataset_card.md) ]
 
@@ -164,12 +164,12 @@ huggingface-cli download <hf-handle>/lut-ad-weld-defect \
 ## 引用
 
 ```bibtex
-@article{pan2026geo2pho,
+@article{cao2026geo2pho,
   title   = {Physically Inspired Geometry-to-Photometry Rendering for Real-Time Weld Defect Detection},
-  author  = {Pan, Will and others},
+  author  = {Cao, Ling and Qiu, Jiajun and Zhang, Yunzhi and Feng, Daquan and Pan, Wei},
   journal = {Engineering Applications of Artificial Intelligence},
   year    = {2026},
-  note    = {Under review}
+  note    = {Accepted, in press. Preprint: SSRN, doi:10.2139/ssrn.6946138}
 }
 ```
 

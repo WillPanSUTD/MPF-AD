@@ -22,9 +22,9 @@ A real-industrial dataset of laser-welded battery top covers, captured as
 high-resolution **structured-light depth maps** and annotated with bounding
 boxes for **six defect classes**. The dataset accompanies the paper
 *"Physically Inspired Geometry-to-Photometry Rendering for Real-Time Weld
-Defect Detection"* (under review at *Engineering Applications of Artificial
-Intelligence*, EAAI). Code and documentation:
-<https://github.com/&lt;your-handle&gt;/&lt;repo&gt;>.
+Defect Detection"* (accepted at *Engineering Applications of Artificial
+Intelligence*, EAAI, 2026). Code and documentation:
+<https://github.com/WillPanSUTD/MPF-AD>.
 
 [ [中文版](dataset_card.zh-CN.md) ]
 
@@ -176,12 +176,12 @@ attribution to OPT Machine Vision in any public artifact derived from it.
 ## Citation
 
 ```bibtex
-@article{pan2026geo2pho,
+@article{cao2026geo2pho,
   title   = {Physically Inspired Geometry-to-Photometry Rendering for Real-Time Weld Defect Detection},
-  author  = {Pan, Will and others},
+  author  = {Cao, Ling and Qiu, Jiajun and Zhang, Yunzhi and Feng, Daquan and Pan, Wei},
   journal = {Engineering Applications of Artificial Intelligence},
   year    = {2026},
-  note    = {Under review}
+  note    = {Accepted, in press. Preprint: SSRN, doi:10.2139/ssrn.6946138}
 }
 ```
 
