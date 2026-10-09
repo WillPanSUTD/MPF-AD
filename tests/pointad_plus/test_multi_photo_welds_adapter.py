@@ -5,9 +5,16 @@ import pytest
 
 from src.pointad_plus import multi_photo_welds_adapter as adp
 
+EYE_ROOT = Path(__file__).resolve().parents[2] / "Dataset_3D" / "Eyecandies_Weld" / "weld"
+pytestmark = pytest.mark.skipif(
+    not EYE_ROOT.is_dir(),
+    reason="MPW-AD Dataset_3D not downloaded (hf download vpan1226/MPW-AD --repo-type dataset "
+           "--include 'Dataset_3D/*' --local-dir .)",
+)
+
 
 def test_eyecandies_weld_root_exists():
-    p = Path("F:/dataset/LUT_AD_DataSet/Dataset_3D/Eyecandies_Weld/weld")
+    p = EYE_ROOT
     assert p.is_dir()
     # confirms the 5 modality subdirs exist on at least one sample
     sub = next((p / "train" / "good").iterdir())  # first modality subdir
@@ -17,7 +24,7 @@ def test_eyecandies_weld_root_exists():
 def test_sample_has_five_modality_paths(tmp_path):
     out = tmp_path / "all_meta.json"
     adp.emit_manifest(
-        source_root=Path("F:/dataset/LUT_AD_DataSet/Dataset_3D/Eyecandies_Weld/weld"),
+        source_root=EYE_ROOT,
         out_path=out,
     )
     meta = json.loads(out.read_text())
@@ -33,7 +40,7 @@ def test_sample_has_five_modality_paths(tmp_path):
 def test_test_split_has_anomalous(tmp_path):
     out = tmp_path / "all_meta.json"
     adp.emit_manifest(
-        source_root=Path("F:/dataset/LUT_AD_DataSet/Dataset_3D/Eyecandies_Weld/weld"),
+        source_root=EYE_ROOT,
         out_path=out,
     )
     meta = json.loads(out.read_text())

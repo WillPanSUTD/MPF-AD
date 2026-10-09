@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-cd F:/dataset/LUT_AD_DataSet
+cd "$(dirname "$0")/../.."
 
 # Step 1: precompute CLIP tokens (idempotent — skips samples already cached)
 python -m scripts.pointad_plus.precompute_clip_tokens \

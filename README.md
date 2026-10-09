@@ -19,20 +19,15 @@ zero-shot pipeline, see [`src/pointad_plus/`](src/pointad_plus/),
 [`docs/superpowers/`](docs/superpowers/), and the
 [MPW-AD dataset card](MPW-AD/README.md).**
 
-A minimum MPF-AD reproduction (Phase 3 Sliding-Window MPF on welds):
-```bash
-python -m src.pointad_plus.run_welds_pointad_plus_sw \
-    --manifest external/datasets/welds_pointad_mp/weld/all_meta.json \
-    --pointad_ckpt external/PointAD/exps_9_12_4_mv9_mvtec_3d_336_4/carrot/epoch_15.pth \
-    --patch_size 256 --stride 128 \
-    --out results/welds_pointad_plus_sw/
-```
+**To reproduce the MPF-AD results (P1–P4 on MPW-AD), follow
+[`docs/reproduce_mpf_ad.md`](docs/reproduce_mpf_ad.md).** It covers the
+environment (`requirements-mpfad.txt`), the upstream PointAD commit and
+checkpoint, the MPW-AD download, data conversion, the three inference runs
+and the analysis scripts. Verified from a fresh clone on a single 8 GB GPU
+(about 1.7 h of inference in total).
 
-Runners require: a single RTX 4090-class GPU (≥ 12 GB), the pre-rendered
-MPW-AD dataset (placed at `Dataset_3D/MVTec3D_Weld/`), and the shipped
-PointAD checkpoint (fetch from `https://github.com/zqhang/PointAD`).
 `results/`, `external/`, and `Dataset_3D/` are intentionally excluded
-from this repo (large data, fork of upstream code, regenerable artefacts).
+from this repo (large data, upstream code, regenerable artefacts).
 
 ---
 

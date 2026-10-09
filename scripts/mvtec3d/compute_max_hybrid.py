@@ -7,7 +7,7 @@ metrics plus the SUMMARY.md aggregate.
 
 Usage:
     python compute_max_hybrid.py \
-        --root F:/dataset/LUT_AD_DataSet/results/mvtec3d_benchmark \
+        --root results/mvtec3d_benchmark \
         --aux carrot cookie dowel
 """
 

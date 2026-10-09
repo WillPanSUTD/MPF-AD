@@ -33,7 +33,7 @@ from collections import OrderedDict
 import numpy as np
 from sklearn.metrics import roc_auc_score, average_precision_score
 
-REPO = Path(r"F:/dataset/LUT_AD_DataSet")
+REPO = Path(__file__).resolve().parents[2]
 P2_RAW = REPO / "results" / "welds_pointad_plus" / "ablations" / "mean_fusion" / "raw_results.pkl"
 P3_RAW = REPO / "results" / "welds_pointad_plus_sw" / "raw_results.pkl"
 OUT_JSON = REPO / "results" / "welds_pointad_plus_hybrid" / "fusion_alternatives.json"

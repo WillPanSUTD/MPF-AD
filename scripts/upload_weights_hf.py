@@ -11,7 +11,7 @@ socket.getaddrinfo = _ipv4
 from huggingface_hub import HfApi
 
 REPO_ID = "vpan1226/MPF-AD"
-BASE = pathlib.Path(r"F:\dataset\LUT_AD_DataSet\YOLO-WT")
+BASE = pathlib.Path(__file__).resolve().parents[1] / "YOLO-WT"
 
 # (src_path_relative_to_BASE, dest_path_in_repo, description)
 WEIGHTS = [

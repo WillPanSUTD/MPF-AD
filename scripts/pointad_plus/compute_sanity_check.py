@@ -26,7 +26,7 @@ import json
 from collections import Counter, defaultdict
 from pathlib import Path
 
-ROOT = Path("F:/dataset/LUT_AD_DataSet")
+ROOT = Path(__file__).resolve().parents[2]
 LABEL_DIR = ROOT / "Crop_Data/label"
 GOOD_PATCH_DIR = ROOT / ".cache/good_patches/test_good"
 OUT_DIR = ROOT / "results/welds_sanity_check"

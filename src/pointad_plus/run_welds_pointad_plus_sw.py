@@ -624,7 +624,9 @@ def run(
         # Phase 4 max-hybrid at pixel level downstream.
         # ------------------------------------------------------------------
         def _stack_maps(map_list):
-            if not map_list:
+            # The metric block above may already have stacked these lists into
+            # arrays/tensors, so test for emptiness explicitly (`not arr` raises).
+            if map_list is None or len(map_list) == 0:
                 return None
             import numpy as _np
             stacked = []

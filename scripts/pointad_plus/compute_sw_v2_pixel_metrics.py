@@ -32,10 +32,10 @@ from PIL import Image
 from sklearn.metrics import roc_auc_score
 
 # Import PointAD's cal_pro_score
-sys.path.insert(0, "F:/dataset/LUT_AD_DataSet/external/PointAD")
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "external" / "PointAD"))
 from metrics import cal_pro_score  # noqa: E402
 
-ROOT = Path("F:/dataset/LUT_AD_DataSet")
+ROOT = Path(__file__).resolve().parents[2]
 MAPS_DIR = ROOT / "results/welds_pointad_plus_sw_v2/maps/weld"
 OUT_DIR = ROOT / "results/welds_pointad_plus_sw_v2"
 MP_MANIFEST = ROOT / "external/datasets/welds_pointad_mp/weld/all_meta.json"

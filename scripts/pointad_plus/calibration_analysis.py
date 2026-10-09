@@ -23,7 +23,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-REPO = Path(r"F:/dataset/LUT_AD_DataSet")
+REPO = Path(__file__).resolve().parents[2]
 P2_RAW = REPO / "results" / "welds_pointad_plus" / "ablations" / "mean_fusion" / "raw_results.pkl"
 P3_RAW = REPO / "results" / "welds_pointad_plus_sw" / "raw_results.pkl"
 P2_META = REPO / "external" / "datasets" / "welds_pointad_mp" / "weld" / "all_meta.json"

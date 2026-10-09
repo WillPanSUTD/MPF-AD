@@ -17,11 +17,11 @@ running test.py twice and keeps the random state identical between branches.
 
 CLI:
   python run_mvtec3d_benchmark.py \
-    --data_root F:/dataset/LUT_AD_DataSet/dataset/mvtec3d \
-    --meta_file F:/dataset/LUT_AD_DataSet/dataset/mvtec3d/all_meta_remapped.json \
+    --data_root dataset/mvtec3d \
+    --meta_file dataset/mvtec3d/all_meta_remapped.json \
     --aux carrot \
-    --pointad_ckpt F:/dataset/LUT_AD_DataSet/external/PointAD/exps_9_12_4_mv9_mvtec_3d_336_4/carrot/epoch_15.pth \
-    --out F:/dataset/LUT_AD_DataSet/results/mvtec3d_benchmark/carrot \
+    --pointad_ckpt external/PointAD/exps_9_12_4_mv9_mvtec_3d_336_4/carrot/epoch_15.pth \
+    --out results/mvtec3d_benchmark/carrot \
     [--limit N]
 
 Saves out_dir/raw_results.pkl with per-category arrays needed for Phase 4

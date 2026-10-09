@@ -18,7 +18,7 @@ from pathlib import Path
 import numpy as np
 from sklearn.metrics import roc_auc_score, average_precision_score
 
-REPO_ROOT = Path(r"F:/dataset/LUT_AD_DataSet")
+REPO_ROOT = Path(__file__).resolve().parents[2]
 P1_RAW = REPO_ROOT / "results" / "welds_zero_shot" / "raw_results.pkl"
 P2_RAW = REPO_ROOT / "results" / "welds_pointad_plus" / "raw_results.pkl"
 P2_MEAN_RAW = REPO_ROOT / "results" / "welds_pointad_plus" / "ablations" / "mean_fusion" / "raw_results.pkl"

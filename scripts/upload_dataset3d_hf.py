@@ -4,7 +4,7 @@ Uses a temporary directory junction so upload_large_folder sees the
 correct Dataset_3D/ path prefix without copying 3.4 GB of data.
 Forces IPv4 to avoid IPv6 connection reset on this host.
 """
-import socket, os, subprocess, pathlib
+import socket, os, subprocess, pathlib, tempfile
 
 _orig = socket.getaddrinfo
 def _ipv4(host, port, family=0, type=0, proto=0, flags=0):
@@ -16,8 +16,8 @@ socket.getaddrinfo = _ipv4
 from huggingface_hub import HfApi
 
 REPO_ID = "vpan1226/MPW-AD"
-SRC = r"F:\dataset\LUT_AD_DataSet\Dataset_3D\MVTec3D_Weld"
-TMP = r"F:\tmp_hf_upload"
+SRC = str(pathlib.Path(__file__).resolve().parents[1] / "Dataset_3D" / "MVTec3D_Weld")
+TMP = os.path.join(tempfile.gettempdir(), "hf_upload_mpw_ad")
 JUNCTION = os.path.join(TMP, "Dataset_3D", "MVTec3D_Weld")
 
 # Set up temporary directory with junction so upload lands at Dataset_3D/MVTec3D_Weld/

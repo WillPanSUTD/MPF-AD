@@ -323,9 +323,27 @@ def build_dataset() -> dict:
         json.dump(info, f, indent=4)
         f.write("\n")
 
+    # PointAD's loader reads `<data_path>/all_meta.json` and lists the three
+    # per-view directories below with os.listdir() without joining them to
+    # the dataset root, so the manifest at <data_path> must carry absolute
+    # paths for exactly these keys.
+    dataset_root = DST_ROOT.parent
+    dir_keys = ("d2_corrdinate", "d2_render_gt_path", "d2_render_img_path")
+    root_info = {
+        phase: {cls: [{k: (str(dataset_root / v) if k in dir_keys and v else v) for k, v in s.items()}
+                      for s in samples]
+                for cls, samples in cls_map.items()}
+        for phase, cls_map in info.items()
+    }
+    root_meta_path = dataset_root / "all_meta.json"
+    with open(root_meta_path, "w", encoding="utf-8") as f:
+        json.dump(root_info, f, indent=4)
+        f.write("\n")
+
     print()
     print(f"Wrote manifest: {meta_path}")
     print(f"Wrote manifest: {cls_meta_path}")
+    print(f"Wrote manifest: {root_meta_path} (absolute per-view dirs, read by PointAD)")
     print(f"  total normal samples: {total_normal}")
     print(f"  total anomalous samples: {total_anomaly}")
     print(f"  train cls samples: {len(info.get('train', {}).get(CLS_NAME, []))}")

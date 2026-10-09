@@ -15,7 +15,7 @@ import pathlib
 
 REPO_ID = "vpan1226/MPW-AD"
 REPO_TYPE = "dataset"
-BASE = pathlib.Path(r"F:\dataset\LUT_AD_DataSet")
+BASE = pathlib.Path(__file__).resolve().parents[1]
 
 api = HfApi()
 
