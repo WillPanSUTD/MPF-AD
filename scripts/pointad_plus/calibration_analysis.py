@@ -27,7 +27,7 @@ REPO = Path(__file__).resolve().parents[2]
 P2_RAW = REPO / "results" / "welds_pointad_plus" / "ablations" / "mean_fusion" / "raw_results.pkl"
 P3_RAW = REPO / "results" / "welds_pointad_plus_sw" / "raw_results.pkl"
 P2_META = REPO / "external" / "datasets" / "welds_pointad_mp" / "weld" / "all_meta.json"
-FIG_DIR = REPO / "paper_pointad_plus" / "figures"
+FIG_DIR = REPO / "results" / "welds_pointad_plus_hybrid" / "figures"
 
 DEFECT_ORDER = [
     "pseudo_soldering", "pinhole", "pit", "burst",
@@ -36,10 +36,17 @@ DEFECT_ORDER = [
 
 
 def load_species():
-    meta = json.loads(P2_META.read_text())
-    species = []
-    for s in meta["test"]["weld"]:
-        species.append(s["specie_name"])
+    """Species labels aligned with the raw_results.pkl sample order.
+
+    The runners iterate PointAD's Dataset over the P1 manifest and keep the
+    (specie, stem) pairs present in the multi-photo manifest, so the pickle
+    order follows the P1 manifest, not the multi-photo manifest. Reuse the
+    shared loader that reconstructs exactly that order.
+    """
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from compute_ablation_per_defect import load_phase2_with_species
+    species = load_phase2_with_species(P2_RAW)["species"]
     assert len(species) == 694
     return np.asarray(species)
 
@@ -56,19 +63,19 @@ def main():
     fig, axes = plt.subplots(1, 2, figsize=(8.0, 3.4), sharey=True)
     nb = 30
     for ax, scores, title in [
-        (axes[0], color_p2, "Phase 2 mean fusion (colour score)"),
-        (axes[1], color_p3, "Phase 3 sliding-window (colour score)"),
+        (axes[0], color_p2, "Global MPF (P2), photometric score"),
+        (axes[1], color_p3, "Sliding-Window MPF (P3), photometric score"),
     ]:
         s_norm = scores[gt == 0]
         s_anom = scores[gt == 1]
         ax.hist(s_norm, bins=nb, alpha=0.6, color="#4C78A8", label=f"Normal (n={len(s_norm)})", density=True)
         ax.hist(s_anom, bins=nb, alpha=0.6, color="#E45756", label=f"Anomalous (n={len(s_anom)})", density=True)
-        ax.set_xlabel("Image-level colour score")
+        ax.set_xlabel("Image-level photometric score")
         ax.set_title(title, fontsize=10)
         ax.legend(fontsize=8, frameon=False)
         ax.grid(alpha=0.25)
     axes[0].set_ylabel("Density")
-    plt.suptitle("Per-sample colour-score distributions (welds 694 protocol)", fontsize=11)
+    plt.suptitle("Per-sample photometric-score distributions (MPW-AD, 694 samples)", fontsize=11)
     plt.tight_layout(rect=[0, 0, 1, 0.95])
     out_pdf = FIG_DIR / "F14_score_calibration.pdf"
     out_png = FIG_DIR / "F14_score_calibration.png"
@@ -103,10 +110,10 @@ def main():
         ax.text(x, f * 100 + 1.5, f"n={n}", ha="center", fontsize=7)
     ax.set_xticks(xs)
     ax.set_xticklabels([c.replace("_", "\n") for c in classes], fontsize=8)
-    ax.set_ylabel("% samples where SW > Mean")
+    ax.set_ylabel("% samples where P3 > P2")
     ax.set_ylim(0, 100)
     ax.axhline(50, color="grey", linestyle="--", linewidth=0.8)
-    ax.set_title("Per-sample max gate: fraction selecting Phase 3 SW colour score", fontsize=10)
+    ax.set_title("Max-Gated MPF: fraction of samples taking the P3 score", fontsize=10)
     ax.grid(axis="y", alpha=0.25)
     plt.tight_layout()
     out_pdf = FIG_DIR / "F15_gate_selection.pdf"
