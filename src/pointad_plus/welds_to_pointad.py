@@ -83,11 +83,14 @@ POINT_SIZE = 336
 N_VIEWS = 9
 
 # Source -> destination phase mapping. PointAD's split is only
-# {train, test}; our `validation` good patches get folded into the test
-# good bucket so they're still scored (they're zero-shot anyway).
+# {train, test}. The `validation` good patches are NOT folded into test:
+# they share file stems (000001...) with test/good, so writing both into
+# test/good overwrote the validation files on disk and listed each test
+# normal twice (306 manifest entries, 153 distinct files). The test set
+# is therefore the 694 distinct samples (153 normal + 541 anomalous) that
+# the multi-photometric runners and analysis scripts use.
 SOURCE_PHASE_TO_DST: dict[str, str] = {
     "train": "train",
-    "validation": "test",  # fold val/good into test/good for the zero-shot eval
     "test": "test",
 }
 
